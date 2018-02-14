@@ -5,23 +5,31 @@ User.destroy_all
 Article.destroy_all
 puts "cleaning finished"
 
-puts "start creating users"
+puts "create me as admin user"
 # user n°1 who is an admin
 user = User.create(
   email: "reginalddewasseige@gmail.com",
   password: "password"
   )
 
-# faker
-
-puts 'Creating db through FAKER...'
-100.times do (
-  article = Article.create(
-    title: Faker::Name.title,
-    text: Faker::VForVendetta.quote
+# start faker
+puts 'Creating DB through FAKER...'
+15.times do(
+  user = User.create(
+    email: Faker::Internet.email,
+    password: "password",
     )
-  # Article.find(Article.last).update_column(:text_hash, AcctTransaction.last.adjusted_bal)
+
+  rand(1..20).times do (
+    article = Article.create(
+      title: Faker::Name.title,
+      text: Faker::VForVendetta.quote,
+      user_id: user.id,
+      )
+    )
+  end
+
   )
 end
 
-puts 'Finished seeding db!'
+puts 'Finished seeding DB!'

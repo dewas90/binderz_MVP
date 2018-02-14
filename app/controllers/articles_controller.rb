@@ -16,6 +16,7 @@ require 'digest'
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
     @article.text_hash = Digest::SHA256.hexdigest @article.text
     if @article.save
       redirect_to article_path(@article)
@@ -44,7 +45,7 @@ require 'digest'
   private
 
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :user_id)
   end
 
 end
