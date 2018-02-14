@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+require 'digest'
   before_action :authenticate_user!, only: [:show, :new, :edit, :update ,:destroy]
 
   def index
@@ -15,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.text_hash = Digest::SHA256.hexdigest @article.text
     if @article.save
       redirect_to article_path(@article)
     else
@@ -28,6 +30,7 @@ class ArticlesController < ApplicationController
 
  def update
     @article = Article.find(params[:id])
+    @article.text_hash = Digest::SHA256.hexdigest article_params[:text]
     @article.update(article_params)
     redirect_to articles_path
   end
