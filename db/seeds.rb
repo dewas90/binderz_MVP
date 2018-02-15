@@ -14,13 +14,13 @@ user = User.create(
 
 # start faker
 puts 'Creating DB through FAKER...'
-15.times do(
+3.times do(
   user = User.create(
     email: Faker::Internet.email,
     password: "password",
     )
 
-  rand(1..20).times do (
+  rand(1..8).times do (
     article = Article.create(
       title: Faker::Name.title,
       text: Faker::VForVendetta.quote,
