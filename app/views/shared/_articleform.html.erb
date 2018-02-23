@@ -1,7 +1,20 @@
 <div class="container">
   <%= simple_form_for @article do |f| %>
-    <%= f.input :title %>
-    <%= f.input :text, as: :text, input_html: {rows: 2} %>
-    <%= f.submit "Submit", class: "btn btn-primary" %>
+  <%= f.input :title %>
+  <%= f.input :text, as: :text, input_html: {rows: 2} %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 </div>
+
+<!-- ################################# -->
+
+<input id="input" type="file" name="myPDF"/>&nbsp;
+<input type="button" value="Preview" onclick="PreviewImage();" />
+
+<div style="clear:both">
+ <iframe id="viewer" frameborder="0" scrolling="no" width="400" height="600"></iframe>
+</div>
+
+<!-- ################################# -->
+
+
